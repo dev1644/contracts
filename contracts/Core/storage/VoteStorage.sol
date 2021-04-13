@@ -1,6 +1,6 @@
 pragma solidity ^0.8.0;
 
-import "../lib/Structs.sol";
+import "../../lib/Structs.sol";
 
 
 contract VoteStorage {
@@ -12,5 +12,4 @@ contract VoteStorage {
     mapping (uint256 =>  mapping (uint256 => uint256)) public totalStakeRevealed;
     //epoch->assetid->voteValue->weight
     mapping (uint256 => mapping (uint256 =>  mapping (uint256 => uint256))) public voteWeights;
-
 }

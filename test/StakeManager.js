@@ -105,19 +105,19 @@ describe('StakeManager', function () {
       assert(String(staker.stake) === String(stake2));
     });
 
-    it('should be able to reset the lock periods', async function (){
-          //let stakeManager = await StakeManager.deployed()
-          //let sch = await SchellingCoin.deployed()
-          const stake = BigNumber.from('20000').mul(ONE_ETHER);
-          const stake2 = BigNumber.from('443000').mul(ONE_ETHER);
-          await schellingCoin.connect(signers[1]).approve(stakeManager.address, stake);
-          const epoch = await getEpoch();
-          await stakeManager.connect(signers[1]).stake(epoch, stake);
-          const staker = await stakeManager.getStaker(1);
-          assert(String(staker.stake) === String(stake2))
-          assert(Number(staker.unstakeAfter) === (epoch+1))
-          assert(String(staker.withdrawAfter) === String(0))
-        })
+    it('should be able to reset the lock periods', async function () {
+      // let stakeManager = await StakeManager.deployed()
+      // let sch = await SchellingCoin.deployed()
+      const stake = BigNumber.from('20000').mul(ONE_ETHER);
+      const stake2 = BigNumber.from('443000').mul(ONE_ETHER);
+      await schellingCoin.connect(signers[1]).approve(stakeManager.address, stake);
+      const epoch = await getEpoch();
+      await stakeManager.connect(signers[1]).stake(epoch, stake);
+      const staker = await stakeManager.getStaker(1);
+      assert(String(staker.stake) === String(stake2));
+      assert(Number(staker.unstakeAfter) === (epoch + 1));
+      assert(String(staker.withdrawAfter) === String(0));
+    });
 
     it('should not be able to unstake before unstake lock period', async function () {
       const epoch = await getEpoch();
@@ -136,7 +136,6 @@ describe('StakeManager', function () {
       assert(Number(staker.unstakeAfter) === 0, 'UnstakeAfter should be zero');
       assert(Number(staker.withdrawAfter) === (epoch + 1), 'withdrawAfter does not match');
     });
-
 
     it('should not be able to withdraw before withdraw lock period', async function () {
       const epoch = await getEpoch();
@@ -171,9 +170,9 @@ describe('StakeManager', function () {
       await voteManager.connect(signers[1]).commit(epoch, commitment1);
       // await stateManager.setState(1)
       await mineToNextState();
-       // let root = tree.root()
+      // let root = tree.root()
       // console.log('proofs', [tree.level(1)[1]], [tree.level(1)[0]])
-      
+
       const proof = [];
       for (let i = 0; i < votes.length; i++) {
         proof.push(tree.getProofPath(i, true, true));

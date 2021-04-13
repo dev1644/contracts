@@ -1,6 +1,6 @@
 pragma solidity ^0.8.0;
-import "../lib/Structs.sol";
 
+import "../../lib/Structs.sol";
 
 interface IStakeManager {
     function init (address _schAddress, address _voteManagerAddress,

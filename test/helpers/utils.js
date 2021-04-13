@@ -40,7 +40,7 @@ const assertDeepEqual = (actual, expected, context) => {
     || typeof actual === 'boolean'
   ) {
     assert.strictEqual(actual, expected, context);
-  } else if (Array.isArray(expected)) { 
+  } else if (Array.isArray(expected)) {
     // Otherwise dig through the deeper object and recurse
     for (let i = 0; i < expected.length; i++) {
       assertDeepEqual(actual[i], expected[i], `(array index: ${i}) `);
